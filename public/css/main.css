@@ -1,0 +1,33 @@
+body {
+    margin: 20px;
+}
+.sidebar {
+    background-color: #ddd;
+}
+button.accordion {
+    background-color: #e8e8e8;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Rubik', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px;
+}
+button.accordion.active, button.accordion:hover {
+    background-color: #c1bdbd;
+}
+div.panel {
+    padding: 0 18px;
+    background-color: #fff;
+    display: none;
+}
+div.panel.show {
+    display: block !important;
+}
