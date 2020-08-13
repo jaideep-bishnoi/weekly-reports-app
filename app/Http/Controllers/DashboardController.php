@@ -6,6 +6,9 @@ use App\Reports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Validator;
 
 
 class DashboardController extends Controller
@@ -36,16 +39,26 @@ class DashboardController extends Controller
         return view('profile');
     }
 
-    public function EditProfile() {
 
-       // $user = User::find($id);
-       // $user->fill($request->all());
-        
-        //User::where('id', $id)->update($request->all());
-        //return redirect('/');
+    public function EditProfile(Request $request) {
 
-        //$name = $request->input('username');
-        //DB::update('update student set name = ? where id = ?',[$name,$id]);
+        $request->validate([
+
+            'currentpassword' => ['required', function ($attribute, $value, $fail){
+                if (!Hash::check($value, Auth::user()->password)) {
+                    $fail('Old Password didn\'t match');
+                }
+            }],
+
+            'newpassword' => ['required'],
+
+            'confirmpassword' => ['same:newpassword'],
+
+        ]);
+
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->newpassword)]);
+
+        return redirect('/profile');
 
     }
 

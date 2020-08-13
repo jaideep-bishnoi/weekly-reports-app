@@ -26,7 +26,7 @@ Route::get('/', 'DashboardController@show');
 Route::get('/reports', 'DashboardController@reports');
 Route::post('/reports', 'ReportsController@create');
 Route::get('/profile', 'DashboardController@profile');
-Route::post('/profile', 'DashboardController@EditProfile');
+Route::patch('/profile', 'DashboardController@EditProfile');
 Route::get('/add-user', 'UserController@index');
 Route::post('/add-user', 'UserController@create');
 

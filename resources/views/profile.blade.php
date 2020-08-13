@@ -17,6 +17,13 @@
     <section class="section">
         <form action="/profile" method="POST">
         @csrf
+        @method('PATCH')
+
+        @foreach ($errors->all() as $error)
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $error }}</strong>
+        </span>
+        @endforeach 
             
             <div class="field">
                 <label class="label" for="username">Username:</label>
@@ -32,15 +39,21 @@
                 </div>
         </div>
         <div class="field">
-            <label class="label" for="start-date">Old Password:</label>
+            <label class="label" for="currentpassword">Current Password:</label>
                 <div class="control">
-                    <input type="password" name="password">
+                    <input type="password" name="currentpassword" required>
                 </div>
         </div>
         <div class="field">
-            <label class="label" for="start-date">New Password:</label>
+            <label class="label" for="newpassword">New Password:</label>
                 <div class="control">
-                    <input type="password" name="password">
+                    <input type="password" name="newpassword" required>
+                </div>
+        </div>
+        <div class="field">
+            <label class="label" for="confirmpassword">Confirm New Password:</label>
+                <div class="control">
+                    <input type="password" name="confirmpassword" required>
                 </div>
         </div>
         <div class="control">
