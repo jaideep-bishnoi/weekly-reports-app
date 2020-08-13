@@ -20,7 +20,7 @@
         @method('PATCH')
 
         @foreach ($errors->all() as $error)
-        <span class="invalid-feedback" role="alert">
+        <span class="notification is-danger">
             <strong>{{ $error }}</strong>
         </span>
         @endforeach 
